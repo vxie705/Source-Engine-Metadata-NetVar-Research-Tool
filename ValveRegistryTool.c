@@ -3,12 +3,6 @@
 #include <stdint.h>
 #include <string.h>
 
-/* ============================================================
-   L4D2 NETVAR DUMPER v2 - PROYECTO KERNEL
-   
-   Corregido: usa __fastcall para simular __thiscall en C
-   y SEH (__try/__except) para evitar crasheos.
-   ============================================================ */
 
 typedef struct RecvProp RecvProp;
 typedef struct RecvTable RecvTable;
@@ -137,7 +131,7 @@ DWORD WINAPI DumperThread(LPVOID lpParam) {
     }
 
     FILE* f;
-    fopen_s(&f, "c:\\Users\\USER\\Desktop\\PROYECTO_KERNEL\\L4D2_NETVAR_DUMP.txt", "w");
+    fopen_s(&f, "SOURCE_NETVAR_DUMP.txt", "w");
     if (!f) {
         MessageBoxA(NULL, "ERROR: No se pudo crear archivo", "DUMPER", MB_OK);
         FreeLibraryAndExitThread((HMODULE)lpParam, 0);
@@ -145,7 +139,7 @@ DWORD WINAPI DumperThread(LPVOID lpParam) {
     }
 
     fprintf(f, "================================================================\n");
-    fprintf(f, "  L4D2 NETVAR DUMP - PROYECTO KERNEL\n");
+    fprintf(f, "  SOURCE ENGINE NETVAR DUMP \n");
     fprintf(f, "  Interfaz: %s | vtable[%d]\n", foundVersion, foundIndex);
     fprintf(f, "  client.dll Base: 0x%X\n", (unsigned int)clientDll);
     fprintf(f, "================================================================\n\n");
@@ -185,7 +179,7 @@ DWORD WINAPI DumperThread(LPVOID lpParam) {
     fclose(f);
 
     char msg[256];
-    sprintf_s(msg, 256, "EXTRACCION OK!\n%d clases.\n\nArchivo: L4D2_NETVAR_DUMP.txt", classCount);
+    sprintf_s(msg, 256, "EXTRACCION OK!\n%d clases.\n\nArchivo: SOURCE_NETVAR_DUMP.txt", classCount);
     MessageBoxA(NULL, msg, "DUMPER", MB_OK);
 
     FreeLibraryAndExitThread((HMODULE)lpParam, 0);
