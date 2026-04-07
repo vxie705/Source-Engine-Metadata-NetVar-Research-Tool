@@ -43,7 +43,7 @@ typedef struct ClientClass {
     int                 m_ClassID;
 } ClientClass;
 
-/* __fastcall simula __thiscall en C puro (ECX = this, EDX = basura) */
+
 typedef ClientClass* (__fastcall *GetAllClassesFn)(void* thisptr, void* edx);
 
 void DumpTable(FILE* f, RecvTable* table, int depth) {
@@ -103,7 +103,7 @@ DWORD WINAPI DumperThread(LPVOID lpParam) {
         return 0;
     }
 
-    /* Probar indices de vtable 6-10 para encontrar GetAllClasses */
+    
     ClientClass* head = NULL;
     int foundIndex = -1;
     uintptr_t* vtable = *(uintptr_t**)pClient;
